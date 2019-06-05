@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Fix me!</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+    />
+    <link rel="stylesheet" href="stylesheet.css" />
+  </head>
+  <body class="bg-dark pt-4">
+    <div id="exercisesHolder" class="container">
+      <div class="row">
+        <div class="col-12 bg-white shadow-sm p-4 mx-auto mt-4 border">
+          <!-- Start writing content here -->
+          <input id="input" type="text" />
+          <select name="selectList" id="select">
+            <option value="Addition">+</option>
+            <option value="Subtraction">-</option>
+            <option value="Multiplication">*</option>
+            <option value="Division">/</option>
+            <option value="Remainder">%</option>
+            <option value="Exponentiation">**</option>
+            <option value="Increment">++</option>
+            <option value="Decrement">--</option>
+          </select>
+          <input id="inputright" type="text" />
+          <br />
+          <button id="btn" class="btn btn-primary" style="margin-top: 10px;">
+            Calculate!
+          </button>
+          <div id="zukisa">
+            <p id="result">Here is your result:</p>
+            <div id="number"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+
+    <script>
+      /** Write your javascript code here **/
+
+      var result = document.getElementById("result");
+
+      var btn = document.getElementById("btn");
+      console.log(btn);
+      btn.addEventListener("click", Clicky);
+      function Clicky() {
+        console.log("Clicky!");
+      }
+
+      btn.addEventListener("click", ChangeClass);
+      function ChangeClass() {
+        btn.classList.remove("btn-primary");
+        btn.classList.add("btn-success");
+        btn.innerHTML =
+          '<i id="spinner" class="fas fa-spinner fa-spin"></i> Calculating...';
+        setTimeout(ChangeClassDelay, 500);
+      }
+
+      function ChangeClassDelay() {
+        btn.classList.remove("btn-success");
+        btn.classList.add("btn-primary");
+        btn.innerHTML = "Calculate!";
+        var input = document.getElementById("input").value;
+        var inputright = document.getElementById("inputright").value;
+        var sum = parseInt(input) + parseInt(inputright);
+
+        if (input == "" || inputright == "") {
+          alert("Error: please fill in both input fields");
+        } else {
+          document.getElementById("number").innerHTML = sum;
+        }
+      }
+    </script>
+  </body>
+</html>
